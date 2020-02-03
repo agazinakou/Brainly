@@ -31,7 +31,7 @@ It simple just :
 $ npm start
 ```
 
-### Any answer ?
+### Any question ?
 
 If you need technical support or have any questions, please send a message to agazinakou@gmail.com or via skype: aziiin5.
 
