@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Brainly
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-row>
+  <ion-col
+    *ngFor="let color of colors"
+    [style.background]="color"
+    class="color-block"
+    tappable
+    (click)="selectColor(color)"
+  ></ion-col>
+</ion-row>
+<ion-radio-group [(ngModel)]="selectedColor">
+  <ion-row>
+    <ion-col *ngFor="let color of colors" class="ion-text-center">
+      <ion-radio [value]="color"></ion-radio>
+    </ion-col>
+  </ion-row>
+</ion-radio-group>
+
+<canvas
+  #imageCanvas
+  (mousedown)="startDrawing($event)"
+  (touchstart)="startDrawingMobile($event)"
+  (mousemove)="moved($event)"
+  (touchmove)="movedMobile($event)"
+  (mouseup)="endDrawing()"
+  (touchend)="endDrawing()"
+></canvas>
+
+<ion-fab vertical="top" horizontal="end" slot="fixed" (click)="exportCanvasImage()">
+  <ion-fab-button size="small" color="primary">
+    <ion-icon name="arrow-down-circle-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="clearCanvas()">
+  <ion-fab-button size="small" color="danger">
+    <ion-icon name="backspace-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
