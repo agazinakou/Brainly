@@ -5,6 +5,9 @@ import {
   Base64ToGallery,
   Base64ToGalleryOptions
 } from '@ionic-native/base64-to-gallery/ngx';
+import { OcrService } from 'src/app/services/ocr.service';
+import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-board',
@@ -32,17 +35,60 @@ export class BoardComponent implements AfterViewInit {
   ];
   lineWidth = 14;
 
+  exercices: any[]= [];
+
   constructor(
     private plt: Platform,
     private base64ToGallery: Base64ToGallery,
-    private toastCtrl: ToastController
-  ) {}
+    private toastCtrl: ToastController,
+    private ocr: OcrService,
+    public alertController: AlertController,
+    public loadingController: LoadingController
+  ) {
+    this.exercices = [{
+      image: 'assets/data/a.png',
+      word: 'a'
+    },{
+      image: 'assets/data/b.png',
+      word: 'b'
+    }];
+  }
 
   ngAfterViewInit() {
     this.canvasElement = this.canvas.nativeElement;
     this.canvasElement.width = this.plt.width() + '';
-    this.canvasElement.height = this.plt.height() - 150;
+    this.canvasElement.height = this.plt.height() - 100;
   }
+
+  async check(){
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+
+    await loading.present();
+
+    const dataUrl = this.canvasElement.toDataURL();
+
+    const result = await this.ocr.doOCR(dataUrl);
+    let msg = '';
+    if(result === 'a'){
+      msg = 'Congratulations you wrote the word very well';
+    } else {
+      msg = 'Congratulations you wrote the word very well';
+    }
+
+    await loading.dismiss();
+
+    const alert = await this.alertController.create({
+      header: 'Result',
+      message: msg,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
   selectColor(color) {
     this.selectedColor = color;
@@ -125,9 +171,12 @@ export class BoardComponent implements AfterViewInit {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   }
 
+  progress(e?){
+    console.log(e);
+  }
+
   exportCanvasImage() {
     const dataUrl = this.canvasElement.toDataURL();
-    console.log('image: ', dataUrl);
     this.clearCanvas();
     if (this.plt.is('cordova')) {
       const options: Base64ToGalleryOptions = {
