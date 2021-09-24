@@ -75,7 +75,7 @@ export class BoardComponent implements AfterViewInit {
     if(result === 'a'){
       msg = 'Congratulations you wrote the word very well';
     } else {
-      msg = 'Congratulations you wrote the word very well';
+      msg = 'Bad result';
     }
 
     await loading.dismiss();
