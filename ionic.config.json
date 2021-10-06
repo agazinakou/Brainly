@@ -1,0 +1,7 @@
+{
+  "name": "brainly",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

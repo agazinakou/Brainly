@@ -2,18 +2,24 @@
 
 Brainly is an application that allows children to write and speak correctly while having fun.
 
+<img src="screen.png" alt="Brainly" width="200"/>
+
+
 ### Project Principles
 
 An optical character recognition (OCR) tool based on [Tesseractjs](https://tesseract.projectnaptha.com/).
 We use this technology to help children read and write correctly.
 
 
-### Features
+### Todo
 
-- [x] Upload image
-- [x] Analyze & generate text
+- [x] A clean & beautiful interface
+- [x] Canvas element
+- [x] Change brush color
+- [x] Export Canvas element as Image
+- [x] Analyse canvas element with TesseractJS
 - [ ] Add Text to Speech
-- [ ] Creating a game to teach children to read and write
+- [ ] Creating gamification
 
 ### Setup
 
@@ -28,7 +34,7 @@ $ npm install
 It simple just :
 
 ```bash
-$ npm start
+$ ionic serve
 ```
 
 ### Any question ?

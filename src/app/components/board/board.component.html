@@ -1,0 +1,57 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Brainly
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<canvas
+  #imageCanvas
+  (mousedown)="startDrawing($event)"
+  (touchstart)="startDrawingMobile($event)"
+  (mousemove)="moved($event)"
+  (touchmove)="movedMobile($event)"
+  (mouseup)="endDrawing()"
+  (touchend)="endDrawing()"
+  style="background: url('assets/paper.png'); background-repeat: no-repeat; background-size: cover;"
+></canvas>
+
+<ion-fab vertical="top" horizontal="end" slot="fixed" (click)="check()" style="margin-top: 34px;">
+  <ion-fab-button color="success"  [style.--border-radius.px]="10">
+    Check
+  </ion-fab-button>
+</ion-fab>
+
+<!--
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="exportCanvasImage()" style="margin-top: 34px;">
+  <ion-fab-button  color="primary">
+    <ion-icon name="arrow-down-circle-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+-->
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="clearCanvas()">
+  <ion-fab-button color="danger" class="clearBtn" [style.--border-radius.px]="10">
+    Clear
+  </ion-fab-button>
+</ion-fab>
+
+
+<ion-fab vertical="bottom" horizontal="start">
+  <ion-fab-button [style.--background]="selectedColor">
+    <ion-icon name="brush"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button *ngFor="let color of colors" [style.--background]="color" tappable
+      (click)="selectColor(color)">
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+
+<div class="float">
+  <h5>Regarde et dessine</h5>
+  <img [src]="exercices[0].image" width="50" alt="A">
+</div>

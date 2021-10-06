@@ -1,0 +1,22 @@
+.item-ios {
+  background-color: transparent !important;
+  }
+
+
+.float{
+  position: fixed;
+  width: 150px;
+  height: 200px;
+  top: 40px;
+  left: 10px;
+  background-color: #0C9;
+  color: #FFF;
+  border-radius: 9px;
+  text-align: center;
+}
+
+.clearBtn {
+  .button-native {
+    border-radius: 10px !important;
+  }
+}

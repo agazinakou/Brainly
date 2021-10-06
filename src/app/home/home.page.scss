@@ -1,0 +1,17 @@
+.canvasContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.name {
+  background: #ffffff;
+  bottom: 20%;
+  border-radius: 3px;
+  font-size: 1.2em;
+  padding: 3px;
+  position: absolute;
+  right: 15px;
+  z-index: 10;
+}
